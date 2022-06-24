@@ -34,7 +34,7 @@ public class RandTest {
         return b() + 1;
     }
 
-    public static class RandomBox{
+    public static class RandomBox {
         private int min;
         private int max;
 
@@ -55,6 +55,57 @@ public class RandTest {
             return max;
         }
     }
+
+    public static int rand01(RandomBox randomBox) {
+        int max = randomBox.getMax();
+        int min = randomBox.getMin();
+        int ans = 0;
+
+//        int remainder = (max - min) % 2;
+//        if (remainder == 1) {
+//            //奇数有中间位
+//            do {
+//                ans = randomBox.random() < (max / 2) ? 0 : 1;
+//            } while (ans == (max / 2 + 1));
+//        } else {
+//            //偶数不需要考虑中间位
+//            ans = randomBox.random() < (max / 2) ? 0 : 1;
+//        }
+        int size = max - min + 1;
+        boolean flag = (size & 1) != 0;
+        int mid = size / 2;
+        do {
+            ans = randomBox.random() - min;
+        } while (flag && ans == mid);
+
+        return ans < mid ? 0 : 1;
+    }
+
+    // 借助RandomBox等概率返回form~to上的任意数字
+    public static int random(RandomBox randomBox, int from, int to) {
+        if (from == to) {
+            return from;
+        }
+        int range = to - from;
+        int bits = 0;
+        while ((1 << bits) - 1 < range) {
+            bits++;
+        }
+        int ans = 0;
+        do {
+            for (int i = 0; i < bits; i++) {
+                ans |= (rand01(randomBox) << i);
+            }
+        } while (ans > range);
+
+        return ans + from;
+    }
+
+    public static double xToXPower2() {
+        return Math.max(Math.random(), Math.random());
+    }
+
+    //非等概率出现随机数时，通过二次随机重构出一个等概率随机的方法
 
     public static void main(String[] args) {
 
