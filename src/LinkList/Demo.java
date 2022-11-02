@@ -46,7 +46,7 @@ public class Demo {
     }
 
     public static Node reverseLinkedList(Node head) {
-        // 找到单词递归的重复操作和递归的停止条件
+        // 找到单次递归的重复操作和递归的停止条件
         return null;
     }
 
@@ -54,6 +54,8 @@ public class Demo {
         return null;
     }
 
+    // TODO: 单链表逆序
+    // TODO: 双链表逆序
     // TODO:单链表实现队列和栈
     // TODO:测试用例
     // TODO: 链表结构实现队列（两端存取值
