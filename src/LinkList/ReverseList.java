@@ -1,6 +1,8 @@
 package LinkList;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -38,15 +40,27 @@ public class ReverseList {
             head.next = last;
 
             last = head;
-
-            head = next;
-
-
-            if (next.next == null) {
+            if (next == null) {
                 break;
             }
+            head = next;
         }
         return head;
+    }
+
+    //不关心head节点，返回pre变量
+    public static DoubleNode reverseDoubleList2(DoubleNode head) {
+        DoubleNode pre = null;
+        DoubleNode next = null;
+
+        while (head != null) {
+            next = head.next;
+            head.next = pre;
+            head.last = next;
+            pre = head;
+            head = next;
+        }
+        return pre;
     }
 
     public static Node generateRandomLinkedList(int len, int value) {
@@ -139,27 +153,63 @@ public class ReverseList {
     }
 
     public static void main(String[] args) {
-        int len = 50;
-        int value = 100;
-        int testTime = 100000;
-        System.out.println("test begin!");
-        for (int i = 0; i < testTime; i++) {
 
-            DoubleNode node3 = generateRandomDoubleList(len, value);
-            List<Integer> list3 = getDoubleListOriginOrder(node3);
-            node3 = reverseDoubleList(node3);
-            if (!checkDoubleListReverse(list3, node3)) {
-                System.out.println("Oops3!");
+        DoubleNode d1 = new DoubleNode(1);
+        DoubleNode d2 = new DoubleNode(2);
+        DoubleNode d3 = new DoubleNode(3);
+        d1.next = d2;
+        d2.last = d1;
+        d2.next = d3;
+        d3.last = d2;
+        List<Integer> originList = getDoubleListOriginOrder(d1);
+        System.out.println(Arrays.toString(originList.toArray()));
+//        originList.forEach(System.out::println);
+        DoubleNode head = reverseDoubleList(d1);
+        List<Integer> reverseList = getDoubleListOriginOrder(head);
+        System.out.println(Arrays.toString(reverseList.toArray()));
+        DoubleNode h = head;
+        while (true) {
+            System.out.println(h.value);
+            h = h.next;
+            if (h.next == null) {
+                System.out.println("end" + h.value);
+                break;
             }
-
-            DoubleNode node4 = generateRandomDoubleList(len, value);
-            List<Integer> list4 = getDoubleListOriginOrder(node4);
-            node4 = reverseDoubleList(node4);
-            if (!checkDoubleListReverse(list4, node4)) {
-                System.out.println("Oops4!");
-            }
-
         }
+        while (true) {
+            System.out.println(h.value);
+            h = h.last;
+            if (h.last == null) {
+                System.out.println("begin" + h.value);
+                break;
+            }
+        }
+
+
+//        System.out.println(head);
+
+//        return;
+//        int len = 50;
+//        int value = 100;
+//        int testTime = 100000;
+//        System.out.println("test begin!");
+//        for (int i = 0; i < testTime; i++) {
+//
+//            DoubleNode node3 = generateRandomDoubleList(len, value);
+//            List<Integer> list3 = getDoubleListOriginOrder(node3);
+//            node3 = reverseDoubleList(node3);
+//            if (!checkDoubleListReverse(list3, node3)) {
+//                System.out.println("Oops3!");
+//            }
+//
+//            DoubleNode node4 = generateRandomDoubleList(len, value);
+//            List<Integer> list4 = getDoubleListOriginOrder(node4);
+//            node4 = reverseDoubleList(node4);
+//            if (!checkDoubleListReverse(list4, node4)) {
+//                System.out.println("Oops4!");
+//            }
+//
+//        }
     }
 
 }
