@@ -14,4 +14,10 @@ public class Utils {
         }
         return arr;
     }
+
+    public static void printIntArr(int[] nums) {
+        for (int num : nums) {
+            System.out.print(num);
+        }
+    }
 }
