@@ -20,4 +20,14 @@ public class Utils {
             System.out.print(num);
         }
     }
+
+    public static void reverse(int[] arr, int begin, int end) {
+        while (begin < end) {
+            int tmp = arr[begin];
+            arr[begin] = arr[end];
+            arr[end] = tmp;
+            begin++;
+            end--;
+        }
+    }
 }
