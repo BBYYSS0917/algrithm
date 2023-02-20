@@ -1,4 +1,4 @@
-package LinkList;
+package linklist;
 
 /**
  * @author Donquixote

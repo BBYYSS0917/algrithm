@@ -1,6 +1,4 @@
-package LinkList;
-
-import java.util.Map;
+package linklist;
 
 /**
  * @author BaiJY
