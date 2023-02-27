@@ -7,10 +7,6 @@ import java.util.Stack;
  * @date 2023/02/20
  **/
 public class MinStack {
-
-    private int min;
-    int size = 0;
-    int top = 0;
     Stack<Integer> stack1;
     Stack<Integer> stack2;
 
@@ -25,16 +21,16 @@ public class MinStack {
 
     public void push(int x) {
         stack1.push(x);
-        if (x < min) {
-            min = x;
+        if (stack2.isEmpty()) {
             stack2.push(x);
+        } else {
+            stack2.push(Math.min(x, stack2.peek()));
         }
-
-        size++;
     }
 
     public void pop() {
         stack1.pop();
+        stack2.pop();
     }
 
     public int top() {
@@ -42,7 +38,7 @@ public class MinStack {
     }
 
     public int min() {
-        return min;
+        return stack2.peek();
     }
 
     public static void main(String[] args) {
@@ -51,10 +47,9 @@ public class MinStack {
         minStack.push(0);
         minStack.push(-3);
 
-        System.out.println(minStack.top());
         System.out.println(minStack.min());
         minStack.pop();
         System.out.println(minStack.top());
-//        System.out.println(minStack.min());
+        System.out.println(minStack.min());
     }
 }
