@@ -58,6 +58,59 @@ public class CopyRandomList {
         return res;
     }
 
+    public static Node Solution2(Node head) {
+        if (head == null) {
+            return null;
+        }
+        //copy node list
+        Node cur = head;
+        while (cur != null) {
+            Node newNode = new Node(cur.val);
+            newNode.next = cur.next;
+            cur.next = newNode;
+            cur = newNode.next;
+        }
+
+        //copy random node
+        Node cur2 = head;
+        while (cur2 != null) {
+            if (cur2.random != null) {
+                cur2.next.random = cur2.random.next;
+            }
+            cur2 = cur2.next.next;
+        }
+
+        //split list
+        Node newHead = head.next;
+        Node cur3 = newHead;
+        while (cur3 != null) {
+            Node next = cur3.next.next;
+            cur3.next = next;
+            if (next.next == null) {
+                break;
+            }
+            cur3 = next;
+        }
+
+
+        return newHead;
+    }
+
+    public static void printNodeListVal(Node head) {
+        Node cur = head;
+        while (cur != null) {
+            System.out.print(cur.val);
+            System.out.print(",");
+            if (cur.random == null) {
+                System.out.print("null");
+            } else {
+                System.out.print(cur.random.val);
+            }
+            System.out.print(" ");
+            cur = cur.next;
+        }
+    }
+
     public static void main(String[] args) {
 
         Node node1 = new Node(7);
@@ -76,7 +129,8 @@ public class CopyRandomList {
         node4.random = node3;
         node5.random = node1;
 
-        Node res = Solution(node1);
-        System.out.println(res.val);
+        Node res = Solution2(node1);
+//        System.out.println(res.val);
+        printNodeListVal(res);
     }
 }
