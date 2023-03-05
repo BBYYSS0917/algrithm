@@ -72,26 +72,27 @@ public class CopyRandomList {
         }
 
         //copy random node
-        Node cur2 = head;
-        while (cur2 != null) {
-            if (cur2.random != null) {
-                cur2.next.random = cur2.random.next;
+        cur = head;
+        while (cur != null) {
+            if (cur.random != null) {
+                cur.next.random = cur.random.next;
             }
-            cur2 = cur2.next.next;
+            cur = cur.next.next;
         }
 
         //split list
         Node newHead = head.next;
-        Node cur3 = newHead;
-        while (cur3 != null) {
-            Node next = cur3.next.next;
-            cur3.next = next;
-            if (next.next == null) {
+        cur = head;
+        Node copyHead = newHead;
+        while (cur.next != null) {
+            cur.next = cur.next.next;
+            if (cur.next == null) {
                 break;
             }
-            cur3 = next;
+            copyHead.next = copyHead.next.next;
+            cur = cur.next;
+            copyHead = copyHead.next;
         }
-
 
         return newHead;
     }
