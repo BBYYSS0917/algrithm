@@ -4,6 +4,9 @@ public class FindNumberIn2DArr {
 
     public static boolean search(int[][] matrix, int target) {
         for (int i = 0; i < matrix.length; i++) {
+            if(matrix[i].length==0){
+                continue;
+            }
             if (matrix[i][0] <= target) {
                 boolean res=binarySearch(matrix[i], target);
                 if(res){
@@ -27,7 +30,7 @@ public class FindNumberIn2DArr {
                 return true;
             }
         }
-        return false;
+        return arr[start]==target;
     }
 
     public static void main(String[] args) {
@@ -37,11 +40,8 @@ public class FindNumberIn2DArr {
         matrix[2] = new int[] { 3, 6, 9, 16, 22 };
         matrix[3] = new int[] { 10, 13, 14, 17, 24 };
         matrix[4] = new int[] { 18, 21, 23, 26, 30 };
-        // int[][] matrix = new int[1][1];
-        // matrix[0]=new int[]{-5};
 
-        // System.out.println(search(matrix, 5));
-        System.out.println(search(matrix, -5));
+        System.out.println(search(matrix, 5));
 
     }
 }
