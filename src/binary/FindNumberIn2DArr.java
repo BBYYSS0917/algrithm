@@ -3,6 +3,7 @@ package binary;
 public class FindNumberIn2DArr {
 
     public static boolean search(int[][] matrix, int target) {
+        //思路一：二分法
         for (int i = 0; i < matrix.length; i++) {
             if(matrix[i].length==0){
                 continue;
@@ -33,6 +34,10 @@ public class FindNumberIn2DArr {
         return arr[start]==target;
     }
 
+    public static boolean search(int[] arr,int target){
+        //思路二：二叉搜索树解法
+        return false;
+    }
     public static void main(String[] args) {
         int[][] matrix = new int[5][5];
         matrix[0] = new int[] { 1, 4, 7, 11, 15 };
