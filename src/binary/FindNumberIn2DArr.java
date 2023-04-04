@@ -34,8 +34,23 @@ public class FindNumberIn2DArr {
         return arr[start]==target;
     }
 
-    public static boolean search(int[] arr,int target){
+    public static boolean search2(int[][] arr,int target){
         //思路二：二叉搜索树解法
+        int i=arr.length-1;
+        int j=0;
+
+        while(true){
+            if((i<0)||(j>arr[0].length-1)){
+                break;
+            }
+            if(arr[i][j]>target){
+                i--;
+            }else if(arr[i][j]<target){
+                j++;
+            }else{
+                return true;
+            }
+        }
         return false;
     }
     public static void main(String[] args) {
@@ -46,7 +61,7 @@ public class FindNumberIn2DArr {
         matrix[3] = new int[] { 10, 13, 14, 17, 24 };
         matrix[4] = new int[] { 18, 21, 23, 26, 30 };
 
-        System.out.println(search(matrix, 5));
+        System.out.println(search2(matrix, 5));
 
     }
 }
