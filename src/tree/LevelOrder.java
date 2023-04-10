@@ -39,4 +39,36 @@ public class LevelOrder {
         return res;
     }
     
+    public List<List<Integer>> levelOreder2(TreeNode root){
+        List<List<Integer>> res=new ArrayList();
+        if(root==null){
+            return res;
+        }
+        Queue<TreeNode> queue=new LinkedList<>();
+        queue.add(root);
+
+        int level=0;
+
+        while(!queue.isEmpty()){
+            TreeNode node=queue.remove();
+            if(node.left!=null){
+                queue.add(node.left);
+            }
+            if(node.right!=null){
+                queue.add(node.right);
+            }
+
+
+        }
+
+        return res;
+    }
+
+    public List<Integer> levelOrder(TreeNode node,int level){
+        if(node.left==null&&node.right==null){
+            return new ArrayList<>();
+        }
+
+        return null;
+    }
 }
