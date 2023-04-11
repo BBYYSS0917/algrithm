@@ -45,30 +45,26 @@ public class LevelOrder {
             return res;
         }
         Queue<TreeNode> queue=new LinkedList<>();
+        
         queue.add(root);
 
-        int level=0;
-
         while(!queue.isEmpty()){
-            TreeNode node=queue.remove();
-            if(node.left!=null){
-                queue.add(node.left);
-            }
-            if(node.right!=null){
-                queue.add(node.right);
+            ArrayList<Integer> tmp=new ArrayList<>();
+            //tmp 辅助记录每层节点
+            for(int i=queue.size();i>0;i--){
+                TreeNode node=queue.remove();
+                if(node.left!=null){
+                    queue.add(node.left);
+                }
+                if(node.right!=null){
+                    queue.add(node.right);
+                }
+                tmp.add(node.val);
             }
 
-
+            res.add(tmp);
         }
 
         return res;
-    }
-
-    public List<Integer> levelOrder(TreeNode node,int level){
-        if(node.left==null&&node.right==null){
-            return new ArrayList<>();
-        }
-
-        return null;
     }
 }
