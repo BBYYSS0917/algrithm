@@ -67,4 +67,38 @@ public class LevelOrder {
 
         return res;
     }
+
+    public List<List<Integer>> levelOreder3(TreeNode root){
+        List<List<Integer>> res=new ArrayList();
+        if(root==null){
+            return res;
+        }
+        Queue<TreeNode> queue=new LinkedList<>();
+        
+        queue.add(root);
+
+        while(!queue.isEmpty()){
+            ArrayList<Integer> tmp=new ArrayList<>();
+            //tmp 辅助记录每层节点
+            for(int i=queue.size();i>0;i--){
+                TreeNode node=queue.remove();
+                if(node.left!=null){
+                    queue.add(node.left);
+                }
+                if(node.right!=null){
+                    queue.add(node.right);
+                }
+                tmp.add(node.val);
+            }
+            //判断当前res数量，若为奇数，则反转
+
+            int size=res.size();
+            if(size%2==1){
+                Collections.reverse(tmp);
+            }
+            res.add(tmp);
+        }
+
+        return res;
+    }
 }
