@@ -28,7 +28,7 @@ public class SubStructure {
 
     private boolean compare(TreeNode A, TreeNode B) {
         //先序遍历
-        
+
         if(B==null){
             return true;
         }
