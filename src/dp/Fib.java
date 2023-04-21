@@ -10,6 +10,15 @@ public class Fib {
         System.out.println(fib(84));
     }
 
+    public int fib2(int n){
+        int[] arr=new int[n-1];
+        if(n<=1){
+            return n;
+        }
+
+        return fib(n-1)+fib(n-2);
+    }
+
     public static int fib(int n) {
 
         if (n == 0 || n == 1) {
